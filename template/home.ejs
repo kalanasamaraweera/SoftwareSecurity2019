@@ -2,20 +2,32 @@
 
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">
-        Sign In as, <%= email %>
+        Sign In as, <%= email %>.
     </a>
 </nav>
+<h5>Your Google+ contacts</h5>
 <div class="container">
-    <h3>Your Google+ connections:</h3>
+    <% for(var i=0; i < connections.length; i++) { %>
+    <div class="col-md-6">
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" src="<%= connections[i].photo_url %>" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><%= connections[i].name %></h4>
+                <ul>
+                    <% for(var j=0; j < connections[i].phoneNumbers.length; j++) { %>
+                    <li>
+                            <%= connections[i].phoneNumbers[j].type %> &nbsp; : &nbsp;<%= connections[i].phoneNumbers[j].canonicalForm  %>
+                    </li>
+                    <% } %>
+                </ul>
 
-    <% for(var i=0; i< connections.length; i++) { %>
-    <div class="card" style="width: 18rem;">
-        <img src="<%= connections[i].photo_url %>" alt="John" style="width:100%;height:50%">
-        <h6><%= connections[i].name %></h6>
+            </div>
+        </div>
     </div>
-    <br>
     <% } %>
-    
     <p><%= message %></p>
-
 </div>
